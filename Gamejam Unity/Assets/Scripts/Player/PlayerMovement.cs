@@ -1,5 +1,4 @@
-﻿using ExitGames.Client.Photon.StructWrapping;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,10 +31,8 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;     //lock cursor in the center
     }
 
-    [System.Obsolete]
     void Update()
     {
-
 
         if (canWalk)
             Movement();
@@ -43,10 +40,6 @@ public class PlayerMovement : MonoBehaviour
         if(canMoveCamera)
             MoveCamera();
 
-        //if(transform.FindChild("ObjectPosition").childCount == 0)
-        //{
-            //canMoveCamera = true;
-        //}
     }
 
     #region Movement Control
