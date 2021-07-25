@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        CameraObject = transform.GetChild(0).transform.GetChild(0).gameObject;
+        CameraObject = transform.GetChild(0).gameObject;
     }
 
     void Start()
