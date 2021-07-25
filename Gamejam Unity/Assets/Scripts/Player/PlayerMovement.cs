@@ -11,10 +11,12 @@ public class PlayerMovement : MonoBehaviour
     public bool canMoveCamera = true;
 
     [Header("Parameters")]
-    public float normalMovementSpeed = 500;
-    public float runMovementSpeed = 500;
+    public float normalMovementSpeed;
+    public float runMovementSpeed;
+    public float jumpForce;
     public float cameraSpeed = 100f;
 
+    bool IsGrounded;
     float CurrMovmentSpeed;
     GameObject CameraObject;
     Rigidbody rb;
@@ -37,9 +39,14 @@ public class PlayerMovement : MonoBehaviour
     {
         // permissões de andar e mexer camera
         if (canWalk)
+        {
             Movement();
-        if(canMoveCamera)
+            Jump();
+        }
+        if (canMoveCamera)
+        {
             MoveCamera();
+        }
 
         // sistema de corrida
         if (Input.GetKey(KeyCode.LeftShift))
@@ -51,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
             CurrMovmentSpeed = normalMovementSpeed;
 
         }
+
 
     }
 
@@ -67,6 +75,24 @@ public class PlayerMovement : MonoBehaviour
     
     }
 
+    //sistema de pulo
+    void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            IsGrounded = false;
+        }
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            IsGrounded = true
+;        }
+    }
     #endregion
 
 
