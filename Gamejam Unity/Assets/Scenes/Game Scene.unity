@@ -246,9 +246,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4fc55f0695c1ab4e9d37d9921104cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canWalk: 0
-  canMoveCamera: 0
-  movementSpeed: 400
+  canWalk: 1
+  canMoveCamera: 1
+  normalMovementSpeed: 600
+  runMovementSpeed: 1000
   cameraSpeed: 100
 --- !u!54 &1335278789
 Rigidbody:
@@ -431,7 +432,7 @@ Transform:
   m_GameObject: {fileID: 1460749610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.7534, y: 3.7534, z: 3.7534}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1

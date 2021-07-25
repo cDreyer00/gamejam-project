@@ -7,13 +7,15 @@ public class PlayerMovement : MonoBehaviour
     #region Variables
 
     [Header("Permissions")]
-    public bool canWalk;
-    public bool canMoveCamera;
+    public bool canWalk = true;
+    public bool canMoveCamera = true;
 
     [Header("Parameters")]
-    public float movementSpeed = 400f;
+    public float normalMovementSpeed = 500;
+    public float runMovementSpeed = 500;
     public float cameraSpeed = 100f;
 
+    float CurrMovmentSpeed;
     GameObject CameraObject;
     Rigidbody rb;
 
@@ -33,12 +35,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
+        // permissões de andar e mexer camera
         if (canWalk)
             Movement();
-
         if(canMoveCamera)
             MoveCamera();
+
+        // sistema de corrida
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            CurrMovmentSpeed = runMovementSpeed;
+        }
+        else
+        {
+            CurrMovmentSpeed = normalMovementSpeed;
+
+        }
 
     }
 
@@ -51,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 MoveVector = transform.right * sideMove + transform.forward * fowardMove;
 
-        rb.velocity = MoveVector.normalized * movementSpeed * Time.deltaTime + new Vector3(0, rb.velocity.y, 0);
+        rb.velocity = MoveVector.normalized * CurrMovmentSpeed * Time.deltaTime + new Vector3(0, rb.velocity.y, 0);
     
     }
 
